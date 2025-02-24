@@ -1,0 +1,244 @@
+/* Resetting default styles for consistent rendering */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex; /* Changed to flex to control overall layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: 0;
+  background-color: white; /* Solid white background as requested */
+  font-family: sans-serif; /* Setting a default font for better readability */
+  user-select: none; /* Prevent text selection for better UI */
+  overflow: hidden; /* Prevent scrollbars if content overflows slightly */
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  width: 95vw; /* Use viewport width to fit on screen */
+  max-width: 800px; /* Maximum width for larger screens */
+}
+
+#spin-the-wheel {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 15px; /* Reduced spacing */
+}
+
+#wheel {
+  display: block;
+  width: 550px; /* Slightly smaller wheel */
+  height: 550px; /* Slightly smaller wheel */
+}
+
+#spin {
+  font-size: 1.8em; /* Slightly smaller font */
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30%;
+  height: 30%;
+  margin: -15%;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  box-shadow:
+    0 0 0 6px rgba(0, 0, 0, 0.2), /* Reduced shadow size */
+    0 0px 10px 3px rgba(0, 0, 0, 0.3); /* Reduced shadow intensity and size */
+  border-radius: 50%;
+  transition: 0.3s; /* Faster transition */
+}
+
+#spin:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 6px rgba(0, 0, 0, 0.3),
+    0 0px 15px 6px rgba(0, 0, 0, 0.4); /* Adjusted hover shadow */
+}
+
+#spin::after {
+  content: "";
+  position: absolute;
+  top: -20px; /* Slightly smaller arrow */
+  border-left: 15px solid transparent; /* Smaller arrow base */
+  border-right: 15px solid transparent; /* Smaller arrow base */
+  border-bottom: 20px solid white;
+  border-top: none;
+}
+
+#betting-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px; /* Reduced padding */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Take up more width in container */
+  max-width: 600px; /* Limit width of betting section */
+}
+
+#money-display, #place-bet-message {
+  font-size: 1.1em; /* Slightly smaller font */
+  margin-bottom: 10px; /* Reduced margin */
+  text-align: center; /* Center align text */
+}
+
+#bet-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px; /* Reduced margin */
+  width: 100%; /* Ensure bet controls take full width */
+}
+
+.bet-type-selector {
+  display: flex;
+  gap: 8px; /* Reduced gap */
+  margin-bottom: 8px; /* Reduced margin */
+  align-items: center;
+  width: 100%; /* Full width for selectors */
+  justify-content: center; /* Center buttons */
+}
+
+.color-bet-button {
+  padding: 8px 16px; /* Reduced padding */
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  flex-grow: 1; /* Distribute space evenly */
+  text-align: center; /* Center text in buttons */
+  max-width: 120px; /* Limit max width of color buttons */
+}
+
+.color-bet-button.red {
+  background-color: #FF4136;
+}
+
+.color-bet-button.black {
+  background-color: #111111;
+}
+
+.color-bet-button.selected {
+  opacity: 1;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5); /* Reduced shadow size */
+}
+
+.number-bet-selector label {
+  margin-right: 8px; /* Reduced margin */
+  font-size: 0.95em; /* Slightly smaller font */
+}
+
+.number-buttons {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr); /* 9 columns for longer rows */
+  grid-template-rows: repeat(4, 1fr); /* 4 rows */
+  gap: 4px; /* Reduced gap */
+  max-width: 100%; /* Take full width of container */
+  width: 100%; /* Ensure it takes full width */
+}
+
+
+.number-button {
+  padding: 6px 8px; /* Reduced padding */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #eee;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.85em; /* Smaller font for number buttons */
+  opacity: 0.7;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+}
+
+.number-button.selected {
+  opacity: 1;
+  background-color: #ddd;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5); /* Reduced shadow size */
+}
+
+#bet-amount-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Reduced gap */
+  margin-bottom: 10px; /* Reduced margin */
+  justify-content: center; /* Center amount controls */
+}
+
+.amount-button {
+  padding: 6px 10px; /* Reduced padding */
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  background-color: #eee;
+  cursor: pointer;
+  font-size: 0.9em; /* Smaller font for amount buttons */
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 30px; /* Fixed width for buttons */
+  height: 30px; /* Fixed height for buttons */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.amount-button:hover {
+  background-color: #ddd;
+}
+
+.amount-button.disabled {
+  background-color: #ddd; /* Darker gray for disabled button */
+  color: #888;
+  cursor: default; /* No cursor interaction */
+  pointer-events: none; /* Make button non-interactive */
+}
+
+
+#bet-amount-display {
+  font-size: 1em; /* Slightly smaller font */
+  font-weight: bold;
+  min-width: 25px; /* Reduced min width */
+  text-align: center;
+}
+
+#place-bet-message {
+  font-style: italic;
+  color: #777;
+  min-height: 18px; /* Reduced min height */
+  font-size: 0.9em; /* Smaller font for message */
+  text-align: center; /* Center the message */
+  display: flex;         /* To align items in one line */
+  justify-content: center; /* Center content horizontally */
+  align-items: center;     /* Center content vertically */
+  gap: 5px;             /* Space between text and bet amount */
+}
+
+#bet-amount-desc {
+  font-style: normal; /* Remove italic style from bet amount */
+  color: inherit;      /* Inherit color from parent */
+  font-weight: bold;  /* Make bet amount bold */
+}
+
+
+#spin.disabled {
+  background-color: #ddd; /* Darker gray for disabled button */
+  color: #888;
+  cursor: default; /* No cursor interaction */
+  pointer-events: none; /* Make button non-interactive */
+}
